@@ -1,0 +1,42 @@
+html
+  head
+    link(rel='stylesheet', href='https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css')
+    title Dashboard
+  body
+    h1.text-4xl.text-center Entries Dashboard
+    
+    div.container.m-auto
+      if error
+        div.my-5.bg-red-800.p-3.rounded-md.text-white #{ error }
+
+      if entries
+        div.divide-x.divide-gray-400.mt-6.flex.flex-row.justify-center
+          - for (var i = 1; i <= pageCount; ++i) {
+            a.text-gray-600.text-center.px-3(href='?page=' + i) Page #{ i }
+          - }
+
+        table.w-full.mt-8
+          thead
+            tr
+              th.px-4.py-2 Status
+              th.px-4.py-2 Answers
+              th.px-4.py-2 Duration
+          tbody
+            each entry in entries
+              tr
+                td.border.px-4.py-2 #{ entry.status }
+                td.border.px-4.py-2
+                  table.w-full.p-3
+                    thead
+                      tr
+                        th.border.px-4.py-2 Question
+                        th.border.px-4.py-2 Answer  
+                    tbody
+                      each response in entry.answers
+                        if response.question
+                          tr
+                            td.border.px-4.py-2 #{ response.question }
+                            td.border.px-4.py-2 #{ response.answer }
+                td.border.px-4.py-2 #{ entry.duration } seconds
+      else
+        h2.text-2xl No entries for the form yet
