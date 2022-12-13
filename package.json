@@ -14,7 +14,7 @@
     "axios": "^0.19.2",
     "databeaver-js": "^1.0.3",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "node-cache": "^5.1.2",
     "pug": "^3.0.0"
   },
